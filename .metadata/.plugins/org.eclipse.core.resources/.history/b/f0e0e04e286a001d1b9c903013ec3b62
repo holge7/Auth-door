@@ -1,0 +1,44 @@
+package com.shop.auth.dto;
+
+import java.util.Set;
+
+import com.shop.auth.model.Rol;
+
+public class UserDTO {
+	public String email;
+	public String name;
+	public Set<Rol> roles;
+	
+	public UserDTO() {}
+	
+	public UserDTO(String email, String name, Set<Rol> roles) {
+		this.email = email;
+		this.name = name;
+		this.roles = roles;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	protected Set<Rol> getRoles() {
+		return roles;
+	}
+
+	protected void setRoles(Set<Rol> roles) {
+		this.roles = roles;
+	}
+	
+}

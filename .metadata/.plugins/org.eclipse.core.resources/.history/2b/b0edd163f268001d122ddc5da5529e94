@@ -1,0 +1,22 @@
+package com.shop.integration;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class AuthStep {
+	@Given("I want to say {string} in given")
+	void given(String s) {
+		System.out.println(s);
+	}
+	
+	@When("I want to say {string} in when")
+	void when(String s) {
+		System.out.println(s);
+	}
+	
+	@Then("I validate")
+	void then() {
+		Assertions.assertTrue(true);
+	}
+}

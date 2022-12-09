@@ -1,0 +1,17 @@
+package com.door.auth.security;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CustomAuthenticationManager {
+	
+	private UserDetailsServiceImpl userDetailsServiceImpl;
+	private PasswordEncoder passwordEncoder;
+	
+	public CustomAuthenticationManager(UserDetailsServiceImpl userDetailsServiceImpl, PasswordEncoder passwordEncoder) {
+		this.userDetailsServiceImpl = userDetailsServiceImpl;
+		this.passwordEncoder = passwordEncoder;
+	}
+	
+}

@@ -1,0 +1,54 @@
+package com.shop.apigateway.security;
+
+import java.util.Set;
+
+import com.shop.apigateway.model.Rol;
+
+public class User {
+	public long id;
+	public String email;
+	public String name;
+	public String password;
+	public Set<Rol> rol;
+	public User(long id, String email, String name, String password) {
+		this.id = id;
+		this.email = email;
+		this.name = name;
+		this.password = password;
+	}
+
+	public User() {}
+
+	protected long getId() {
+		return id;
+	}
+
+	protected void setId(long id) {
+		this.id = id;
+	}
+
+	protected String getEmail() {
+		return email;
+	}
+
+	protected void setEmail(String email) {
+		this.email = email;
+	}
+
+	protected String getName() {
+		return name;
+	}
+
+	protected void setName(String name) {
+		this.name = name;
+	}
+
+	protected String getPassword() {
+		return password;
+	}
+
+	protected void setPassword(String password) {
+		this.password = password;
+	}
+
+}

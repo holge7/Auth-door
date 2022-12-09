@@ -1,0 +1,23 @@
+package com.shop.apigateway.service;
+
+import com.shop.apigateway.dto.payload.response.JwtResponse;
+import com.shop.apigateway.security.jwt.JwtUtils;
+
+import io.jsonwebtoken.Jwts;
+
+public class JwtService {
+	
+    final JwtUtils jwtUtils;
+
+    public JwtService(JwtUtils jwtUtils) {
+        this.jwtUtils = jwtUtils;
+    }
+    
+    public JwtResponse parseJwt(String token) {
+		return Jwts.parser()
+				.setSigningKey(jwtSecret)
+				.parseClaimsJws(token)
+				.getBody()
+				.getSubject();
+    }
+}

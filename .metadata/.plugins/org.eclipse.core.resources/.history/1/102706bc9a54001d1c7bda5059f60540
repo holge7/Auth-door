@@ -1,0 +1,5 @@
+package com.shop.productservice.dto;
+
+public class ProductResponseDTO {
+
+}

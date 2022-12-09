@@ -1,0 +1,33 @@
+package com.door.auth.security;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CustomAuthenticationManager implements AuthenticationManager {
+	
+	private UserDetailsServiceImpl userDetailsServiceImpl;
+	private PasswordEncoder passwordEncoder;
+	
+	public CustomAuthenticationManager(UserDetailsServiceImpl userDetailsServiceImpl, PasswordEncoder passwordEncoder) {
+		this.userDetailsServiceImpl = userDetailsServiceImpl;
+		this.passwordEncoder = passwordEncoder;
+	}
+
+	@Override
+	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		final UserDetails userDetails = userDetailsServiceImpl.loadUserByEmail(authentication.getName());
+		
+		if (!passwordEncoder.matches(authentication.getCredentials().toString(), userDetails.getPassword())) {
+			
+		}
+		
+		
+		return null;
+	}
+	
+}

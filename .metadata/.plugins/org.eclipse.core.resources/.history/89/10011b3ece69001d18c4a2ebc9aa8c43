@@ -1,0 +1,28 @@
+package com.shop.apigateway.service;
+
+import org.springframework.beans.factory.annotation.Value;
+
+import com.shop.apigateway.dto.payload.response.JwtResponse;
+import com.shop.apigateway.security.jwt.JwtUtils;
+
+import io.jsonwebtoken.Jwts;
+
+public class JwtService {
+	
+	@Value("${security.app.jwtSecret}")
+	private String jwtSecret;
+	
+    final JwtUtils jwtUtils;
+    
+    public JwtService(JwtUtils jwtUtils) {
+        this.jwtUtils = jwtUtils;
+    }
+    
+    public JwtResponse parseJwt(String token) {
+		return Jwts.parser()
+				.setSigningKey(jwtSecret)
+				.parseClaimsJws(token)
+				.getBody()
+				.getSubject();
+    }
+}

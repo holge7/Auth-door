@@ -1,0 +1,15 @@
+package com.shop.integration;
+
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+
+import com.shop.apigateway.ApiAuthApplication;
+
+import io.cucumber.spring.CucumberContextConfiguration;
+
+@CucumberContextConfiguration
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ContextConfiguration(classes = ApiAuthApplication.class)
+public class SpringCucumberIntegrationTest  {
+
+}

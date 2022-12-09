@@ -1,0 +1,17 @@
+package com.shop.integration;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+/**
+ * Gherkin tests entry points
+ * - features: Path where the .feature files are located
+ * - glue: List of packages where step implementation are written to
+ */
+@RunWith(Cucumber.class)
+@CucumberOptions(features = "src/test/resources/features")
+public class RestApiCucumberTest {
+
+}

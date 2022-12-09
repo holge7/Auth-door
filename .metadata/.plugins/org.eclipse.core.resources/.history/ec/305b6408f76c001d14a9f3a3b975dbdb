@@ -1,0 +1,30 @@
+package com.door.auth.security;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import com.door.auth.data.repository.UserRepository;
+
+public class UserDetailsServiceImpl implements UserDetailsService {
+	
+	UserRepository userRepository;
+	
+	public UserDetailsServiceImpl(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// i am using load by email
+		return null;
+	}
+	
+	public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
+		
+		User user = userRepository.findBy(null, null)
+
+		
+	}
+
+}

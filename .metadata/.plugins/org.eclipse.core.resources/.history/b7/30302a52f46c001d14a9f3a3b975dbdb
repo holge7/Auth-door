@@ -1,0 +1,5 @@
+package com.door.auth.data.entity;
+
+public class user {
+
+}

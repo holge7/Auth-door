@@ -1,0 +1,32 @@
+package com.door.configuration;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.web.server.SecurityWebFilterChain;
+
+import com.door.auth.ERol;
+
+@Configuration
+@EnableWebFluxSecurity
+public class HelloWebfluxSecurityConfig {
+	
+    @Bean
+    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+    	System.out.println("Spring Security Filter Chain");
+
+        http.csrf().disable()
+        .exceptionHandling().authenticationEntryPoint(null)
+        .and()
+        .authorizeExchange()
+        .pathMatchers(Routes.PUBLIC_ROUTES).permitAll() //public routes
+        .pathMatchers(Routes.USER_ROUTES).hasRole(ERol.ROLE_ADMIN.toString());
+        /*.authorizeExchange(exchanges -> exchanges
+        		.pathMatchers(PUBLIC_ROUTES).permitAll()
+        		//.anyExchange().permitAll()
+            );*/
+        return http.build();
+    }
+	
+}

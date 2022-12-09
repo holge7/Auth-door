@@ -1,0 +1,38 @@
+package com.door.auth.service;
+
+import org.apache.catalina.mapper.Mapper;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.door.auth.data.repository.RolRepository;
+import com.door.auth.data.repository.UserRepository;
+import com.door.auth.mapper.UserMapper;
+import com.door.auth.security.jwt.JwtUtils;
+
+public class UserService {
+	
+	public UserRepository userRepository;
+	public RolRepository rolRepository;
+	public PasswordEncoder passwordEncoder;
+	public UserMapper userMapper;
+	public Mapper mapper;
+	public AuthenticationManager authenticationManager;
+	public JwtUtils jwtUtils;
+	
+	public UserService(UserRepository userRepository, RolRepository rolRepository, PasswordEncoder passwordEncoder,
+			UserMapper userMapper, Mapper mapper, AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
+		this.userRepository = userRepository;
+		this.rolRepository = rolRepository;
+		this.passwordEncoder = passwordEncoder;
+		this.userMapper = userMapper;
+		this.mapper = mapper;
+		this.authenticationManager = authenticationManager;
+		this.jwtUtils = jwtUtils;
+	}
+	
+	
+	
+	
+	
+	
+}

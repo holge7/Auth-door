@@ -1,0 +1,7 @@
+Feature: Test of cucumber
+  I want test cucumber
+
+  Scenario: Say hello world
+    Given I want to say "Hello "
+    When I complete action
+    Then I validate the outcomes

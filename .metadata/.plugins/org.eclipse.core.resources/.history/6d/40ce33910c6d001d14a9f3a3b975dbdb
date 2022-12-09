@@ -1,0 +1,71 @@
+package com.door.auth.service;
+
+import java.util.List;
+
+import org.apache.catalina.mapper.Mapper;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.door.auth.data.payload.request.LoginRequest;
+import com.door.auth.data.repository.RolRepository;
+import com.door.auth.data.repository.UserRepository;
+import com.door.auth.mapper.UserMapper;
+import com.door.auth.security.UserDetailsImpl;
+import com.door.auth.security.jwt.JwtUtils;
+
+import utils.ApiResponse;
+
+public class UserService {
+	
+	public UserRepository userRepository;
+	public RolRepository rolRepository;
+	public PasswordEncoder passwordEncoder;
+	public UserMapper userMapper;
+	public Mapper mapper;
+	public AuthenticationManager authenticationManager;
+	public JwtUtils jwtUtils;
+	
+	public UserService(UserRepository userRepository, RolRepository rolRepository, PasswordEncoder passwordEncoder,
+			UserMapper userMapper, Mapper mapper, AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
+		this.userRepository = userRepository;
+		this.rolRepository = rolRepository;
+		this.passwordEncoder = passwordEncoder;
+		this.userMapper = userMapper;
+		this.mapper = mapper;
+		this.authenticationManager = authenticationManager;
+		this.jwtUtils = jwtUtils;
+	}
+	
+	
+	public ResponseEntity<ApiResponse> login(LoginRequest userLogin){
+		
+		//Validate the existence of the user/password
+		if(!userRepository.existsByEmail(userLogin.getEmail())) {
+			throw new UsernameNotFoundException(userLogin.getEmail());
+		}
+		
+		//Authenticate user
+		Authentication authentication = authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(userLogin.getEmail(), userLogin.getPassword())
+				);
+		
+		//Generate jwt
+		String jwt = jwtUtils.generateJwtToken(authentication);
+		
+		//Get user details
+		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+		
+		List<String> role = userDetails.getAuthorities().stream()
+				.map(item -> item.getAuthority())
+		
+		
+		
+		
+	}
+		
+}

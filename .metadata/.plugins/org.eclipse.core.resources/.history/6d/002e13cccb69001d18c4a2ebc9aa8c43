@@ -1,0 +1,5 @@
+package com.shop.apigateway.config;
+
+public class JwtParseResponseDto {
+
+}

@@ -1,0 +1,19 @@
+package com.door.auth.service;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.door.auth.data.repository.RolRepository;
+import com.door.auth.data.repository.UserRepository;
+
+public class UserService {
+	
+	public UserRepository userRepository;
+	public RolRepository rolRepository;
+	public PasswordEncoder passwordEncoder;
+	public UserMapper userMapper;
+	public Mapper mapper;
+	public AuthenticationManager authenticationManager;
+	public JwtUtils jwtUtils;
+	
+	
+}

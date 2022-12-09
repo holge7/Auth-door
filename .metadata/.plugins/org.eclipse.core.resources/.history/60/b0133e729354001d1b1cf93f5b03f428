@@ -1,0 +1,5 @@
+package com.shop.productservice.service;
+
+public class ProductService {
+
+}

@@ -1,0 +1,23 @@
+package com.door.auth.data.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+@Entity
+public class User {
+	
+	@Id
+	public long id;
+	public String email;
+	public String name;
+	public String password;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	public Set<Rol> rol = new HashSet<>();
+
+}

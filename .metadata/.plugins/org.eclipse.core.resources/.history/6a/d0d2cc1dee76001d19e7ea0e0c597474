@@ -1,0 +1,27 @@
+package com.door.security;
+
+import java.io.IOException;
+
+import org.springframework.security.web.server.WebFilterChainProxy;
+import org.springframework.web.filter.GenericFilterBean;
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.WebFilterChain;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import reactor.core.publisher.Mono;
+
+public class CustomFilter implements WebFilterChain {
+
+	@Override
+	public Mono<Void> filter(ServerWebExchange exchange) {
+		System.out.println("?????????????????");
+		System.out.println("Generic Filter Bean");
+		System.out.println("?????????????????");
+		
+		return null;
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.shop.productservice.dto;
+
+import java.math.BigDecimal;
+
+public class ProductResponseDTO {
+	public String name;
+	public String description;
+	public BigDecimal price;
+}

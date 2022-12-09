@@ -1,0 +1,11 @@
+package com.door.auth.service;
+
+public class UserService {
+	public UserRepository userRepository;
+	public RolRepository rolRepository;
+	public PasswordEncoder passwordEncoder;
+	public UserMapper userMapper;
+	public Mapper mapper;
+	public AuthenticationManager authenticationManager;
+	public JwtUtils jwtUtils;
+}

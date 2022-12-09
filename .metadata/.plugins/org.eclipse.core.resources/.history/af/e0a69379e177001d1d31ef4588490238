@@ -1,0 +1,7 @@
+package com.door.security;
+
+import org.springframework.security.config.web.server.ServerHttpSecurity.AuthorizeExchangeSpec;
+
+public class AuthorizeExchangeSpecImpl implements AuthorizeExchangeSpec {
+
+}

@@ -1,0 +1,17 @@
+package com.shop.productservice.service;
+
+import org.springframework.stereotype.Service;
+
+import com.shop.productservice.dto.ProductRequestDTO;
+import com.shop.productservice.model.Product;
+
+@Service
+public class ProductService {
+	
+	public void createProduct(ProductRequestDTO productRequestDTO) {
+		Product product = Product.builder()
+				.name(productRequestDTO.name);
+	}
+	
+	
+}

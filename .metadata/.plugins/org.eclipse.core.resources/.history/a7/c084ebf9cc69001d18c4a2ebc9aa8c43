@@ -1,0 +1,5 @@
+package com.shop.apigateway.controller;
+
+public class JwtController {
+
+}

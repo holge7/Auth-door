@@ -1,0 +1,20 @@
+package com.door.security;
+
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.server.ServerAuthenticationEntryPoint;
+import org.springframework.web.server.ServerWebExchange;
+
+import reactor.core.publisher.Mono;
+
+public class ServerAuthenticationEntryPointImpl implements ServerAuthenticationEntryPoint{
+
+	@Override
+	public Mono<Void> commence(ServerWebExchange exchange, AuthenticationException ex) {
+		// TODO Auto-generated method stub
+		System.out.println("===================");
+		System.out.println("This is the server auth entry point");
+		System.out.println("===================");
+		return null;
+	}
+
+}

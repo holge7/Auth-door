@@ -1,0 +1,32 @@
+package com.shop.apigateway;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(features = "src/test/auth")
+public class AuthControllerStep extends SpringIntegrationTest {
+	
+	@Given("^given a user$")
+	public void given_user() {
+		System.out.println("Given user");
+	}
+	
+	@When("^register a user$")
+	public void register_user() {
+		System.out.println("When");
+	}
+	
+	@Then("^verify the register$")
+	public void verify_user_register() {
+		System.out.println("Then");
+	}
+	
+	
+	
+}

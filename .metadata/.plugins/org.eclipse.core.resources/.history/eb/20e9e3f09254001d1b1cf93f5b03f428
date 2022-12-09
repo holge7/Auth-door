@@ -1,0 +1,8 @@
+package com.shop.productservice.dto;
+
+import lombok.Data;
+
+@Data
+public class ProductRequestDTO {
+
+}

@@ -1,0 +1,61 @@
+package com.door.security;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.WebFilter;
+import org.springframework.web.server.WebFilterChain;
+
+import com.door.jwt.JwtUtils;
+
+import reactor.core.publisher.Mono;
+
+@Configuration
+public class LogginFilter implements WebFilter{
+    Log logger = LogFactory.getLog(getClass());
+    
+    JwtUtils jwtUtils;
+    
+    public LogginFilter(JwtUtils jwtUtils) {
+    	this.jwtUtils = jwtUtils;
+    }
+
+	@Override
+	public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+
+		System.out.println("================");
+		System.out.println("Loggin Filter");
+		System.out.println("================");
+		
+		try {
+			// Get Authorization Header
+			String jwt = exchange.getRequest().getHeaders().getFirst("Authorization");
+			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
+				System.out.println("Email: "+jwtUtils.getEmailNameFromJwtToken(jwt));
+			}else {
+				System.out.println("No jwt valido: "+jwt);
+			}
+			
+			
+		} catch (Exception e) {
+			logger.error("Cannot set user authrntication: {}", e);
+			onError(exchange, "ERROR JAJA", HttpStatus.UNAUTHORIZED);
+		}
+		
+		return chain.filter(exchange);
+	}
+	
+    private Mono<Void> onError(ServerWebExchange exchange, String err, HttpStatus httpStatus)  {
+    	
+        ServerHttpResponse response = exchange.getResponse();
+
+        response.setStatusCode(httpStatus);
+	
+        return response.setComplete();
+	
+    }
+	
+}

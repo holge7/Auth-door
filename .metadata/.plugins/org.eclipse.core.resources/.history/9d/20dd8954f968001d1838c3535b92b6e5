@@ -1,0 +1,28 @@
+package com.shop.integration;
+
+import org.junit.jupiter.api.Assertions;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.cucumber.spring.CucumberContextConfiguration;
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@CucumberContextConfiguration
+public class CucumberMySteps {
+	@Given("I want to say {string} in given")
+	void given(String s) {
+		System.out.println(s);
+	}
+	
+	@When("I want to say {string} in when")
+	void when(String s) {
+		System.out.println(s);
+	}
+	
+	@Then("I validate")
+	void then() {
+		Assertions.assertTrue(true);
+	}
+}

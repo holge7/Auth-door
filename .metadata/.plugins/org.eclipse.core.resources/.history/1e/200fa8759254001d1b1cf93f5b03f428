@@ -1,0 +1,5 @@
+package com.shop.productservice.controller;
+
+public class ProductController {
+
+}

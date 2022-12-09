@@ -1,0 +1,24 @@
+package com.shop.integration;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class CucumberStep {
+
+	  @Given("given")
+	  public void aUserWithTheFollowingRolesCatsReaderCatsWriter(String roles) {
+	    System.out.println("GIVEN");
+	  }
+
+	  @When("when")
+	  public void theClientCallsCats(String endpoint) throws Exception {
+	    System.out.println("WHEN");
+	  }
+	  
+	  @Then("then")
+	  public void theClientReceivesStatusCodeOf(int statusCode) {
+		  System.out.println("THEN");
+	  }
+
+}

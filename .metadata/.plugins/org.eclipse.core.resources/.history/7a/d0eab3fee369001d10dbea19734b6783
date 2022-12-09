@@ -1,0 +1,19 @@
+package com.shop.auth.service;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.shop.apigateway.dto.payload.request.SignupRequest;
+import com.shop.apigateway.util.ApiResponse;
+
+@Service
+public class UserService {
+	
+	public ResponseEntity<ApiResponse> register(SignupRequest userRequest) {
+		
+	}
+	
+	
+	
+	
+}

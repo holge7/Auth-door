@@ -1,0 +1,12 @@
+package com.door.auth.data.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.door.auth.data.ERol;
+import com.door.auth.data.entity.Rol;
+
+public interface RolRepository extends JpaRepository<Rol, Long>{
+	
+	public String findByRol(ERol rol);
+	
+}

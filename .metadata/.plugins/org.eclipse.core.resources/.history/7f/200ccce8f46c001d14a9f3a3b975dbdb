@@ -1,0 +1,5 @@
+package com.door.auth.data.payload.request;
+
+public class SingupRequest {
+
+}

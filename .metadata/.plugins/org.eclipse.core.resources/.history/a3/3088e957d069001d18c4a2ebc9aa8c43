@@ -1,0 +1,13 @@
+package com.shop.apigateway.security;
+
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.authentication.AuthenticationFilter;
+
+@EnableWebSecurity
+public class WebSecurityConfiguration {
+    private final AuthenticationFilter authenticationFilter;
+
+    public WebSecurityConfiguration(AuthenticationFilter authenticationFilter) {
+        this.authenticationFilter = authenticationFilter;
+    }
+}

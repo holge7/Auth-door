@@ -1,0 +1,7 @@
+package com.door.auth.data.payload;
+
+public class JwtResponse {
+	
+	
+	
+}

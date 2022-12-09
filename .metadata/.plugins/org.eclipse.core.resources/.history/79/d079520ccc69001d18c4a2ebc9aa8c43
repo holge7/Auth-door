@@ -1,0 +1,8 @@
+package com.shop.apigateway.security;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class RestTemplateConfig {
+
+}

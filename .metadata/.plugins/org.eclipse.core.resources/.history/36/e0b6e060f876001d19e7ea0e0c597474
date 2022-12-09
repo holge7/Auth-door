@@ -1,0 +1,5 @@
+package com.door.security.user;
+
+public class User {
+
+}

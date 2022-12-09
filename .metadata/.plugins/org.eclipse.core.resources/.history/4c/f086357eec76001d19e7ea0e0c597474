@@ -1,0 +1,18 @@
+package com.door.security;
+
+import org.springframework.cloud.gateway.filter.GatewayFilter;
+import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+
+public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter> {
+
+	@Override
+	public GatewayFilter apply(AuthenticationFilter config) {
+		System.out.println("=================");
+		System.out.println("Authentication filter");
+		System.out.println("=================");
+		return ((exchange, chain) -> {
+			return chain.filter(exchange);
+		});
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.shop.productservice.mapper;
+
+public class ProductMapper {
+
+}

@@ -1,0 +1,14 @@
+package com.door.configuration;
+
+public class Routes {
+	private static final String[] PUBLIC_ROUTES = new String[] {
+			"/api/resource/public/**",
+			"/api/auth/login",
+			"/api/auth/register"
+	};
+	
+	private static final String[] USER_ROUTES = new String[] {
+		"/api/resource/**"	
+	};
+	
+}

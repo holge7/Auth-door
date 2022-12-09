@@ -1,0 +1,5 @@
+package com.shop.apigateway.service;
+
+public class JwtService {
+
+}

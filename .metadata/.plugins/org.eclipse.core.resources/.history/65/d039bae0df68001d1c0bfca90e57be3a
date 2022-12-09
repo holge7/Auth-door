@@ -1,0 +1,23 @@
+package com.shop.integration;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class AuthIntegrationStep {
+	
+	@When("the client calls endpoint {string}")
+	void when(String string) {
+		System.out.println("2");
+	}
+	
+	@Then("response status code is {int}")
+	void then(int i) {
+		System.out.println(i);
+	}
+	
+	@And("returned string should be {string}")
+	void and(String s) {
+		System.out.println("ey");
+	}
+}

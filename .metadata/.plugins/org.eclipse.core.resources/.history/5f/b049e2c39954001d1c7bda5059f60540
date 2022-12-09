@@ -1,0 +1,32 @@
+package com.shop.productservice.service;
+
+import org.springframework.stereotype.Service;
+
+import com.shop.productservice.dto.ProductRequestDTO;
+import com.shop.productservice.model.Product;
+import com.shop.productservice.model.repository.ProductRepository;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+public class ProductService {
+	
+	private final ProductRepository productRepository;
+	
+	public ProductService(ProductRepository productRepository) {
+		this.productRepository = productRepository;
+	}
+	
+	public ProductRequestDTO createProduct(ProductRequestDTO productRequestDTO) {
+		Product product = new Product();
+		product.setName(productRequestDTO.getName());
+		product.setDescription(productRequestDTO.getDescription());
+		product.setPrice(productRequestDTO.getPrice());
+		
+		ProductRequestDTO newProductDTO = productRepository.save(product);
+	
+		return newProductDTO;
+	}
+	
+	
+}

@@ -1,0 +1,7 @@
+Feature: Auth controller
+  I want to use this template for my auth controller
+
+  Scenario Outline: Client makes register call to /auth/register
+    Given given a user
+    When register a user
+    Then verify the register

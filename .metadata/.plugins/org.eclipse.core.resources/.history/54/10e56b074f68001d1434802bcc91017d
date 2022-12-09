@@ -1,0 +1,7 @@
+Feature: Auth controller
+  I want to use this template for my auth controller
+
+  Scenario Outline: Register user
+    Given I want to given a user
+    When I register a user
+    Then I verify the register

@@ -1,0 +1,23 @@
+package com.shop.integration;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.runner.RunWith;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+/**
+ * To run cucumber test
+ * @author Jorge
+ *
+ */
+@RunWith(Cucumber.class)
+@CucumberOptions(
+		features = "src/test/resources",
+		plugin = {"pretty"})
+public class StepDefs extends CucumberSpringContextConfiguration {
+
+}

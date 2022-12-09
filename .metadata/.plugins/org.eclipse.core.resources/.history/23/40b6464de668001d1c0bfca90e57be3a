@@ -1,0 +1,7 @@
+Feature: Test of cucumber
+  I want test cucumber
+
+  Scenario: Say hello world
+    Given I want to say "Hello " in given
+    When I want to say "world" in when
+    Then I validate

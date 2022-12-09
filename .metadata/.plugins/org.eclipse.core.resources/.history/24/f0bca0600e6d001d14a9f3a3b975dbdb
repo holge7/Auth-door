@@ -1,0 +1,111 @@
+package com.door.auth.service;
+
+import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import org.apache.catalina.mapper.Mapper;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.door.auth.data.entity.User;
+import com.door.auth.data.payload.request.LoginRequest;
+import com.door.auth.data.payload.request.SingupRequest;
+import com.door.auth.data.payload.response.JwtResponse;
+import com.door.auth.data.repository.RolRepository;
+import com.door.auth.data.repository.UserRepository;
+import com.door.auth.exception.UserAlreadyExistsException;
+import com.door.auth.mapper.UserMapper;
+import com.door.auth.security.UserDetailsImpl;
+import com.door.auth.security.jwt.JwtUtils;
+
+import utils.ApiResponse;
+
+public class UserService {
+	
+	public UserRepository userRepository;
+	public RolRepository rolRepository;
+	public PasswordEncoder passwordEncoder;
+	public UserMapper userMapper;
+	public Mapper mapper;
+	public AuthenticationManager authenticationManager;
+	public JwtUtils jwtUtils;
+	
+	public UserService(UserRepository userRepository, RolRepository rolRepository, PasswordEncoder passwordEncoder,
+			UserMapper userMapper, Mapper mapper, AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
+		this.userRepository = userRepository;
+		this.rolRepository = rolRepository;
+		this.passwordEncoder = passwordEncoder;
+		this.userMapper = userMapper;
+		this.mapper = mapper;
+		this.authenticationManager = authenticationManager;
+		this.jwtUtils = jwtUtils;
+	}
+	
+	
+	public ResponseEntity<ApiResponse> login(LoginRequest userLogin){
+		
+		//Validate the existence of the user/password
+		if(!userRepository.existsByEmail(userLogin.getEmail())) {
+			throw new UsernameNotFoundException(userLogin.getEmail());
+		}
+		
+		//Authenticate user
+		Authentication authentication = authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(userLogin.getEmail(), userLogin.getPassword())
+				);
+		
+		//Generate jwt
+		String jwt = jwtUtils.generateJwtToken(authentication);
+		
+		//Get user details
+		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+		
+		List<String> roles = userDetails.getAuthorities().stream()
+				.map(item -> item.getAuthority())
+				.collect(Collectors.toList());
+		
+		//Return data
+		JwtResponse jwtResponse = new JwtResponse(
+					jwt,
+					userDetails.getID(),
+					userDetails.getUsername(),
+					userDetails.getEmail(),
+					roles
+				);
+		
+		ApiResponse response = new ApiResponse(jwtResponse);
+		
+		return new ResponseEntity<ApiResponse>(
+					response,
+					HttpStatus.OK
+				);
+	}
+	
+	
+	public ResponseEntity<ApiResponse> register(SingupRequest userRequest) {
+		
+		//Check that not exists
+		if (userRepository.existsByEmail(userRequest.getEmail())) {
+			throw new UserAlreadyExistsException(userRequest.getEmail()); 
+		}
+		
+		User user = new User(
+					userRequest.getEmail(),
+					userRequest.getName()
+				);
+		
+		
+		
+		
+		
+	}
+		
+}

@@ -1,0 +1,45 @@
+package com.door.configuration;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.server.SecurityWebFilterChain;
+
+import com.door.auth.ERol;
+import com.door.security.LogginFilter;
+import com.door.security.ServerAuthenticationEntryPointImpl;
+
+@Configuration
+@EnableWebFluxSecurity
+public class HelloWebfluxSecurityConfig{
+	
+	@Autowired
+	ServerAuthenticationEntryPointImpl authFilter;
+	
+	@Autowired
+	LogginFilter logginFilter;
+
+    @Bean
+    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+        http.csrf().disable()
+        .addFilterAfter(logginFilter, SecurityWebFiltersOrder.AUTHENTICATION)
+        .exceptionHandling().authenticationEntryPoint(authFilter)
+        .and()
+        .authorizeExchange()
+        .pathMatchers(Routes.PUBLIC_ROUTES).permitAll() //public routes
+        .pathMatchers(Routes.USER_ROUTES).authenticated();
+        //.pathMatchers(Routes.USER_ROUTES).hasRole(ERol.ROLE_ADMIN.toString());
+        /*.authorizeExchange(exchanges -> exchanges
+        		.pathMatchers(PUBLIC_ROUTES).permitAll()
+        		//.anyExchange().permitAll()
+            );*/
+        return http.build();
+    }
+    
+	
+}

@@ -1,0 +1,13 @@
+package com.shop.integration;
+
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.shop.apigateway.ApiAuthApplication;
+
+import io.cucumber.spring.CucumberContextConfiguration;
+
+@CucumberContextConfiguration
+@SpringBootTest(classes = ApiAuthApplication.class)
+public class CucumberSpringConfiguration {
+
+}

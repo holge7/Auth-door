@@ -1,0 +1,5 @@
+package com.shop.productservice.model.repository;
+
+public class ProductRepository {
+
+}

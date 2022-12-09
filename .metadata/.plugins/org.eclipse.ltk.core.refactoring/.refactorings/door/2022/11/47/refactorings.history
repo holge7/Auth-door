@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;ApiResponse.java&apos; to &apos;auth-service/src/main/java/utils&apos;&#x0D;&#x0A;- Original project: &apos;door&apos;&#x0D;&#x0A;- Destination element: &apos;auth-service/src/main/java/utils&apos;&#x0D;&#x0A;- Original element: &apos;ApiResponse.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move file" destination="=auth-service/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;utils" element1="src/ApiResponse.java" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1669402793210" units="0" version="1.0"/>
+</session>

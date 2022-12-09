@@ -1,0 +1,5 @@
+package com.shop.apigateway.security;
+
+public class AuthEntryPointJwt {
+
+}

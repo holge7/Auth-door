@@ -1,0 +1,7 @@
+Feature: Test of cucumber
+  I want test cucumber
+
+  Scenario: Say hello world
+    Given given
+    When when
+    Then then

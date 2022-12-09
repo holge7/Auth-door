@@ -1,0 +1,5 @@
+package com.shop.apigateway.dto.payload.request;
+
+public class JwtRequest {
+
+}

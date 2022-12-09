@@ -1,0 +1,7 @@
+package com.shop.productservice.util;
+
+public class ApiResponse {
+	public long code;
+	public Object data;
+	public String message;
+}

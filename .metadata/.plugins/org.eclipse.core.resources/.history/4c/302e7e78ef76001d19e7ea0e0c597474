@@ -1,0 +1,47 @@
+package com.door.security;
+
+import java.io.IOException;
+
+import org.springframework.security.web.server.WebFilterChainProxy;
+import org.springframework.web.filter.GenericFilterBean;
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.WebFilter;
+import org.springframework.web.server.WebFilterChain;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpFilter;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import reactor.core.publisher.Mono;
+
+public class CustomFilter extends HttpFilter {
+
+	 @Override
+	    protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+
+	       /* UsernamePasswordToken token = extractUsernameAndPasswordFrom(request);  // (1)
+
+	        if (notAuthenticated(token)) {  // (2)
+	            // either no or wrong username/password
+	            // unfortunately the HTTP status code is called "unauthorized", instead of "unauthenticated"
+	            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // HTTP 401.
+	            return;
+	        }
+
+	        if (notAuthorized(token, request)) { // (3)
+	            // you are logged in, but don't have the proper rights
+	            response.setStatus(HttpServletResponse.SC_FORBIDDEN); // HTTP 403
+	            return;
+	        }*/
+		 	System.out.println("==================");
+		 	System.out.println("Hello WORLD");
+		 	System.out.println("==================");
+	        // allow the HttpRequest to go to Spring's DispatcherServlet
+	        // and @RestControllers/@Controllers.
+	        chain.doFilter(request, response); // (4)
+	    }
+
+}
