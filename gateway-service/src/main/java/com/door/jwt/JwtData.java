@@ -1,17 +1,21 @@
 package com.door.jwt;
 
-import java.util.Collection;
+import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority;
-
+/**
+ * DTO to store JWT body
+ * @author Holge
+ *
+ */
 public class JwtData {
 	
 	String email;
-	String roles; //TODO: ESTO TIENE QUE SER UN LIST<STRING>
+	String name; 
+	List<String> roles;
 	
 	public JwtData() {}
 
-	public JwtData(String email, String roles) {
+	public JwtData(String email, String name, List<String> roles) {
 		this.email = email;
 		this.roles = roles;
 	}
@@ -24,11 +28,19 @@ public class JwtData {
 		this.email = email;
 	}
 
-	public String getRoles() {
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<String> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(String roles) {
+	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
 

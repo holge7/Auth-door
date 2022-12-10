@@ -36,7 +36,10 @@ public class SecurityContextRepository implements ServerSecurityContextRepositor
         String jwt = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
 
         if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
+        	// Create Authentication with JWT
             Authentication auth = new UsernamePasswordAuthenticationToken(jwt, jwt);
+            
+            // Use authManager to set authentication/authorization
             return this.customAuthenticationManager.authenticate(auth)
                     .map(SecurityContextImpl::new);
         } else {

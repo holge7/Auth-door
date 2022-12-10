@@ -26,9 +26,6 @@ public class UserController {
 	
 	@GetMapping("/test")
 	public ResponseEntity<ApiResponse> test() {
-		System.out.println("Estoy en el user controller :))))");
-		System.out.println("En /test");
-		System.out.println("··································");
 		ApiResponse respnose = new ApiResponse("Hello");
 		return new ResponseEntity<ApiResponse>(
 					respnose,
@@ -41,16 +38,7 @@ public class UserController {
 			@RequestBody LoginRequest user
 			){
 		return userService.login(user);
-	}
-	
-	/*@PostMapping("/login")
-	public ResponseEntity<ApiResponse> login(
-			@RequestBody LoginRequest user
-			){
-		System.out.println("Estoy en el user controller :))))");
-		return userService.login(user);
-	}*/
-	
+	}	
 	
 	@PostMapping("/register")
 	public ResponseEntity<ApiResponse> register(

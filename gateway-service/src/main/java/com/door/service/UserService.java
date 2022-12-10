@@ -39,9 +39,6 @@ public class UserService {
 		HashMap<String, String> params = new HashMap<>();
 		params.put("email", user.getEmail());
 		params.put("password", user.getPassword());
-		
-		System.out.println("Email");
-		System.out.println(user.getEmail());
 
 		ResponseEntity<String> response = new RestTemplate()
 				.postForEntity("http://localhost:8085/api/user/login", params, String.class);

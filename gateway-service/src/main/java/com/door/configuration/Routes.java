@@ -10,7 +10,15 @@ public class Routes {
 	};
 	
 	public static final String[] USER_ROUTES = new String[] {
-		"/api/resource/**"	
+		"/api/resource/user/**"	
+	};
+	
+	public static final String[] MODERATOR_ROUTES = new String[] {
+		"/api/resource/mod/**"	
+	};
+	
+	public static final String[] ADMIN_ROUTES = new String[] {
+		"/api/resource/admin/**"	
 	};
 	
 }

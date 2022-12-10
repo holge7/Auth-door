@@ -17,7 +17,7 @@ public class ServerAuthenticationEntryPointImpl implements ServerAuthenticationE
 
 	@Override
 	public Mono<Void> commence(ServerWebExchange exchange, AuthenticationException ex) {
-		// TODO Auto-generated method stub
+	
 		System.out.println("===================");
 		System.out.println("Auth Exception");
 		System.out.println("===================");
