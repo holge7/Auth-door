@@ -1,4 +1,4 @@
-GitRepositoriesView.GitDirectories=D\:\\ProgrammingEnviroment\\Spring\\MicroservicesExample\\microservice-shop\\.git;
-GitRepositoriesView.GitDirectories.relative=microservice-shop\\.git;
+GitRepositoriesView.GitDirectories=C\:\\ProgramingEnviroment\\Java\\Spring\\Auth-door\\.git;C\:\\ProgramingEnviroment\\Java\\Spring\\Auth-door\\microservice-shop\\.git;
+GitRepositoriesView.GitDirectories.relative=.git;microservice-shop\\.git;
 core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1

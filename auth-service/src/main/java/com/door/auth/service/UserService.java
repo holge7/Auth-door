@@ -70,6 +70,7 @@ public class UserService {
 		
 		//Generate jwt
 		String jwt = jwtUtils.generateJwtToken(authentication);
+		System.out.println(jwt);
 		
 		//Get user details
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();

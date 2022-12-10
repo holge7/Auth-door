@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 public class JwtData {
 	
 	String email;
-	String roles;
+	String roles; //TODO: ESTO TIENE QUE SER UN LIST<STRING>
 	
 	public JwtData() {}
 
@@ -30,6 +30,11 @@ public class JwtData {
 
 	public void setRoles(String roles) {
 		this.roles = roles;
+	}
+
+	@Override
+	public String toString() {
+		return "JwtData [email=" + email + ", roles=" + roles + "]";
 	}
 	
 	

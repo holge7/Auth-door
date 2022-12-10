@@ -2,17 +2,23 @@ package com.door.jwt;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+
+import com.door.dto.UserDTO;
+import com.google.gson.Gson;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 import org.slf4j.Logger;
 
@@ -25,6 +31,25 @@ public class JwtUtils {
 	
 	@Value("${security.app.jwtExpirationMs}")
 	private int jwtExpirationMs;
+	
+	public String generateJwtToken(UserDTO userDTO) {		
+		System.out.println("CREO JWT");
+		System.out.println("===================");
+		System.out.println(userDTO.getEmail());
+		System.out.println(userDTO.getRol());
+		System.out.println("===================");
+		JwtData jwtData = new JwtData(userDTO.getEmail(), userDTO.getRol().toString());
+		
+		Gson gson = new Gson();
+		String jwtDataString = gson.toJson(jwtData);
+		
+		return Jwts.builder()
+				.setSubject(jwtDataString)
+				.setIssuedAt(new Date())
+				.setExpiration(new Date(new Date().getTime() + jwtExpirationMs))
+				.signWith(SignatureAlgorithm.HS512, jwtSecret)
+				.compact();
+	}
 	
 	public String getEmailNameFromJwtToken(String token) {
 		return Jwts.parser()

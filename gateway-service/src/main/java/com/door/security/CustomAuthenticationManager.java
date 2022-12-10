@@ -40,9 +40,12 @@ public class CustomAuthenticationManager implements ReactiveAuthenticationManage
             //Get list of roles for this user
             //ArrayList<String> perms = (ArrayList<String>) claims.getBody().get("authorities");
             ArrayList<String> perms = new ArrayList<>();
-            perms.add("ROLE_USER");
-            var authorities = perms.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+            perms.add(jwtData.getRoles());
 
+            var authorities = perms.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+            System.out.println(jwtData.getRoles());
+            System.out.println(authorities);
+            
             return Mono.just(new UsernamePasswordAuthenticationToken(claims.getBody().getSubject(), null, authorities));
         } catch (Exception e) {
             return Mono.empty();
