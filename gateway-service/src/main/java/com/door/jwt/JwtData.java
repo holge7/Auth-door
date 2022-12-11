@@ -17,6 +17,7 @@ public class JwtData {
 
 	public JwtData(String email, String name, List<String> roles) {
 		this.email = email;
+		this.name = name;
 		this.roles = roles;
 	}
 	

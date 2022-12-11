@@ -58,14 +58,6 @@ public class JwtUtils {
 				.compact();
 	}
 	
-	public String getEmailNameFromJwtToken(String token) {
-		return Jwts.parser()
-				.setSigningKey(jwtSecret)
-				.parseClaimsJws(token)
-				.getBody()
-				.getSubject();
-	}
-	
 	/**
 	 * Get all info about a JWT
 	 * @param authToken

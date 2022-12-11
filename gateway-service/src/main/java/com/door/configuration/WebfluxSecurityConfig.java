@@ -1,6 +1,5 @@
 package com.door.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -11,6 +10,8 @@ import org.springframework.security.web.server.context.NoOpServerSecurityContext
 
 import com.door.security.CustomAuthenticationManager;
 import com.door.security.SecurityContextRepository;
+import com.door.security.UnauthenticateHandler;
+import com.door.security.UnauthorizedHandler;
 
 import reactor.core.publisher.Mono;
 
@@ -20,13 +21,19 @@ public class WebfluxSecurityConfig{
 	
 	SecurityContextRepository securityContextRepository;
 	CustomAuthenticationManager customAuthenticationManager;
+	UnauthorizedHandler unauthorizedHandler;
+	UnauthenticateHandler unauthenticateHandler;
 	
-	public WebfluxSecurityConfig(SecurityContextRepository securityContextRepository, CustomAuthenticationManager customAuthenticationManager) {
+	public WebfluxSecurityConfig(
+			SecurityContextRepository securityContextRepository, 
+			CustomAuthenticationManager customAuthenticationManager,
+			UnauthorizedHandler unauthorizedHandler,
+			UnauthenticateHandler unauthenticateHandler) {
 		this.customAuthenticationManager = customAuthenticationManager;
 		this.securityContextRepository = securityContextRepository;
+		this.unauthorizedHandler = unauthorizedHandler;
+		this.unauthenticateHandler = unauthenticateHandler;
 	}
-	
-	 
 	
 	@Bean
     public SecurityWebFilterChain securitygWebFilterChain(ServerHttpSecurity http) {
@@ -43,10 +50,8 @@ public class WebfluxSecurityConfig{
                 .securityContextRepository(this.securityContextRepository)
                 // Exceptions
                 .exceptionHandling()
-                .authenticationEntryPoint((swe, e) -> Mono.fromRunnable(() ->
-                        swe.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED)
-                )).accessDeniedHandler((swe, e) -> Mono.fromRunnable(() ->
-                        swe.getResponse().setStatusCode(HttpStatus.FORBIDDEN)))
+                //.authenticationEntryPoint(this.unauthenticateHandler)
+                .accessDeniedHandler(this.unauthorizedHandler)
                 .and()
                 // Access to routes
                 .authorizeExchange()

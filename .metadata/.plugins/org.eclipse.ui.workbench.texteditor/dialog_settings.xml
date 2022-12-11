@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="UsernamePasswordAuthenticationToken"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="gson"/>
+			<item value="mapper"/>
 			<item value="UsernamePasswordAuthenticationToken"/>
 			<item value="authenticationManager"/>
 			<item value="This is the server auth entry point"/>
@@ -21,8 +23,6 @@
 			<item value="auth"/>
 			<item value="una"/>
 			<item value="client"/>
-			<item value="eureka-client"/>
-			<item value="spring-boot-starter-parent"/>
 		</list>
 		<list key="replacehistory">
 		</list>
