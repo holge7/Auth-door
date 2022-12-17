@@ -1,5 +1,0 @@
-package com.door.security;
-
-public class AuthenticationManager {
-
-}

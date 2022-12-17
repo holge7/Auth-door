@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="junit"/>
 		<list key="findhistory">
+			<item value="mock"/>
+			<item value="mockito"/>
+			<item value="junit"/>
 			<item value="gson"/>
 			<item value="mapper"/>
 			<item value="UsernamePasswordAuthenticationToken"/>
@@ -20,9 +23,6 @@
 			<item value="spring-boot-maven-plugin"/>
 			<item value="security"/>
 			<item value="HttpSecurity"/>
-			<item value="auth"/>
-			<item value="una"/>
-			<item value="client"/>
 		</list>
 		<list key="replacehistory">
 		</list>

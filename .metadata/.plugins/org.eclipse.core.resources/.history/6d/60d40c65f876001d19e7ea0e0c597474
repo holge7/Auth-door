@@ -1,5 +1,0 @@
-package com.door.security.user;
-
-public class UserDetailsServiceImpl {
-
-}
