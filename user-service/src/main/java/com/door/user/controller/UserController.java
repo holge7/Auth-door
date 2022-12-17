@@ -1,5 +1,7 @@
 package com.door.user.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.door.user.data.payload.request.LoginRequest;
 import com.door.user.data.payload.request.SingupRequest;
-import com.door.user.entity.User;
 import com.door.user.service.UserService;
 import com.door.user.utils.ApiResponse;
 
@@ -26,7 +27,7 @@ public class UserController {
 	
 	@GetMapping("/test")
 	public ResponseEntity<ApiResponse> test() {
-		ApiResponse respnose = new ApiResponse("Hello");
+		ApiResponse respnose = new ApiResponse("Hello", false);
 		return new ResponseEntity<ApiResponse>(
 					respnose,
 					HttpStatus.OK

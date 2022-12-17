@@ -4,6 +4,7 @@ public class Routes {
 	public static final String[] PUBLIC_ROUTES = new String[] {
 			"/api/resource/public/**",
 			"/api/user/login",
+			"/api/user/test",
 			"/api/user/register",
 			"/api/auth/login",
 			"/login"

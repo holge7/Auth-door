@@ -90,6 +90,8 @@ public class UserService {
 		if (strRole == null) {
 			Rol userRole = rolRepository.findByRol(ERol.ROLE_USER)
 					.orElseThrow(() -> new RolNotFoundException(ERol.ROLE_USER));
+			
+			roles.add(userRole);
 		}else {
 			strRole.forEach(role -> {
 				Rol userRole;

@@ -1,5 +1,7 @@
 package com.door.utils;
 
+import java.util.ArrayList;
+
 public class ApiResponse {
 	
 	String message;
@@ -11,7 +13,7 @@ public class ApiResponse {
 	public ApiResponse(String message) {
 		this.message = message;
 		this.error = true;
-		this.data = null;
+		this.data = new ArrayList<>();
 	}
 	
 	public ApiResponse(Object data) {

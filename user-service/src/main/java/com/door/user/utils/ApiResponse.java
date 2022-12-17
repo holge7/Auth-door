@@ -20,6 +20,12 @@ public class ApiResponse {
 		this.data = data;
 	}
 
+	public ApiResponse(String message, boolean error){
+		this.message = message;
+		this.error = error;
+		this.data = null;
+	}
+
 	public String getMessage() {
 		return message;
 	}
