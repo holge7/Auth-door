@@ -1,4 +1,4 @@
-package com.door.dto;
+package com.door.loginservice.dto;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.door.jwt;
+package com.door.loginservice.security;
 
 import java.util.List;
 
@@ -47,7 +47,7 @@ public class JwtData {
 
 	@Override
 	public String toString() {
-		return "JwtData [email=" + email + ", name="+name+" roles=" + roles + "]";
+		return "JwtData [email=" + email + ", roles=" + roles + "]";
 	}
 	
 	

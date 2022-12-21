@@ -1,10 +1,10 @@
-package com.door;
+package com.door.loginservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GatewayServiceApplicationTests {
+class LoginServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

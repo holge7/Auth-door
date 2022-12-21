@@ -3,6 +3,7 @@ package com.door.configuration;
 public class Routes {
 	public static final String[] PUBLIC_ROUTES = new String[] {
 			"/api/resource/public/**",
+			"/api/login/**",
 			"/api/user/login",
 			"/api/user/test",
 			"/api/user/register",

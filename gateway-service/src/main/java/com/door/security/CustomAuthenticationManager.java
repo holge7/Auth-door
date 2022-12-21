@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.door.jwt.JwtData;
 import com.door.jwt.JwtUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import reactor.core.publisher.Mono;
@@ -29,26 +30,15 @@ public class CustomAuthenticationManager implements ReactiveAuthenticationManage
 	@Override
 	public Mono<Authentication> authenticate(Authentication authentication) {
 		
-		// Get token
-		String jwt = authentication.getCredentials().toString();
+		// Get User
+		JwtData user= (JwtData) authentication.getPrincipal();
+
+        // Set authorities of the User
+        var authorities = user.getRoles().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+
+        // Return a authentication with user and authorities
+        return Mono.just(new UsernamePasswordAuthenticationToken(user, null, authorities));
 		
-        try {
-        	// Decrypt and get all info about the JWT
-            var claims = jwtUtil.getAllClaimsFromToken(jwt);
-            
-            // Parse jwt to JwtData
-            ObjectMapper objectMapper = new ObjectMapper();
-            JwtData user = objectMapper.readValue(claims.getBody().getSubject(), JwtData.class);
-
-            // Set authorities of the JWT
-            var authorities = user.getRoles().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-
-            // Return a authentication with jwt body and authorities
-            return Mono.just(new UsernamePasswordAuthenticationToken(claims.getBody().getSubject(), null, authorities));
-        } catch (Exception e) {
-        	System.out.println(e);
-            return Mono.empty();
-        }
 	}
 
 }

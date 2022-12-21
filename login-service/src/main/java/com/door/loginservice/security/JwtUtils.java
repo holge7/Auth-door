@@ -1,10 +1,11 @@
-package com.door.jwt;
+package com.door.loginservice.security;
+
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.door.dto.UserDTO;
+import com.door.loginservice.dto.UserDTO;
 import com.google.gson.Gson;
 
 import io.jsonwebtoken.Claims;
