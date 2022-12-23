@@ -1,9 +1,9 @@
 package com.door.loginservice.service;
 
-import java.net.http.HttpResponse;
 import java.util.HashMap;
 
-import org.apache.catalina.connector.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,6 +24,8 @@ import com.google.gson.Gson;
 
 @Service
 public class LoginService {
+    private static final Logger logger = LoggerFactory.getLogger(LoginService.class);
+
 
     RestTemplate restTemplate;
     Gson gson;
@@ -72,7 +74,7 @@ public class LoginService {
 		params.put("password", user.getPassword());
         
         ResponseEntity<String> response = null;
-        ApiResponse apiResponse;
+        ApiResponse apiResponse = null;
 
         try {
             response =  restTemplate.postForEntity("http://localhost:8085/api/user/login", params, String.class);

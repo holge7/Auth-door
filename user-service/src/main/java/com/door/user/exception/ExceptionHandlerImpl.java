@@ -1,5 +1,6 @@
 package com.door.user.exception;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -9,6 +10,18 @@ import com.door.user.utils.ApiResponse;
 
 @ControllerAdvice
 public class ExceptionHandlerImpl extends ResponseEntityExceptionHandler {
+
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<ApiResponse> handleException(Exception e){
+
+		ApiResponse response = new ApiResponse(e.getMessage());
+
+		return new ResponseEntity<ApiResponse>(
+			response, 
+			HttpStatus.INTERNAL_SERVER_ERROR
+		);
+
+	}
 	
 	@ExceptionHandler(RolException.class)
 	public ResponseEntity<ApiResponse> handleRolException(RolException RolException){

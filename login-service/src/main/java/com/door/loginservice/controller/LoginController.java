@@ -27,6 +27,7 @@ public class LoginController {
 	public ResponseEntity<ApiResponse> login(
 			@RequestBody LoginRequest user
 			) {
+		System.out.println("Hello world");
 		return loginService.login(user);
 	}
 
@@ -41,15 +42,8 @@ public class LoginController {
 	public ResponseEntity<ApiResponse> getJwtDetail(
 		@RequestBody String jwt
 	) throws JsonMappingException, JsonProcessingException {
-		System.out.println("Llego a detail");
-		System.out.println(jwt);
 		return loginService.getJwtDetail(jwt);
 	}
 
-	@PostMapping("/detail2")
-	public ResponseEntity<ApiResponse> getJwtDetail2() throws JsonMappingException, JsonProcessingException {
-		String jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJlbWFpbFwiOlwiam9yZ2UzQGdtYWlsLmNvbVwiLFwicm9sZXNcIjpbXCJST0xFX1VTRVJcIl19IiwiaWF0IjoxNjcxNjUyNjE0LCJleHAiOjE2NzE3MzkwMTR9.a8NglB39EPNi1Y1Ofb1a2WXluxnPAhIj2XbYDsKIrr0_CWX3mAjC6Oh6IVav3FQ1COyZUsbcO4Go5xGFLRPRkg";
-		return loginService.getJwtDetail(jwt);
-	}
 
 }

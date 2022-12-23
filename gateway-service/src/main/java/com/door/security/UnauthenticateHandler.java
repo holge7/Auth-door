@@ -1,6 +1,5 @@
 package com.door.security;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 import org.apache.commons.logging.Log;

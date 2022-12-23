@@ -1,9 +1,7 @@
 package com.door.user.service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.apache.catalina.mapper.Mapper;
 import org.springframework.http.HttpStatus;
@@ -11,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.ctc.wstx.util.StringUtil;
 import com.door.user.data.ERol;
 import com.door.user.data.dto.UserDTO;
 import com.door.user.data.payload.request.LoginRequest;
@@ -20,7 +17,6 @@ import com.door.user.entity.Rol;
 import com.door.user.entity.User;
 import com.door.user.exception.RolNotFoundException;
 import com.door.user.exception.UserAlreadyExistsException;
-import com.door.user.exception.UserException;
 import com.door.user.exception.UserNotFoundException;
 import com.door.user.mapper.UserMapper;
 import com.door.user.repository.RolRepository;
@@ -35,17 +31,13 @@ public class UserService {
 	public RolRepository rolRepository;
 	public PasswordEncoder passwordEncoder;
 	public UserMapper userMapper;
-	public Mapper mapper;
-	//public AuthenticationManager authenticationManager;
-	//public JwtUtils jwtUtils;
 	
 	public UserService(UserRepository userRepository, RolRepository rolRepository, PasswordEncoder passwordEncoder,
-			UserMapper userMapper, Mapper mapper) {
+			UserMapper userMapper) {
 		this.userRepository = userRepository;
 		this.rolRepository = rolRepository;
 		this.passwordEncoder = passwordEncoder;
 		this.userMapper = userMapper;
-		this.mapper = mapper;
 	}
 	
 	
@@ -56,7 +48,7 @@ public class UserService {
 		//Validate the existence of the user/password
 		User user = userRepository.findByEmail(email)
 				.orElseThrow(() -> new UserNotFoundException(email));
-		
+		System.out.println(user.getName());
 		UserDTO userDTO = userMapper.userDTO(user);		
 		ApiResponse response = new ApiResponse(userDTO);
 		
@@ -147,5 +139,7 @@ public class UserService {
 	public boolean existsUser(String email) {
 		return userRepository.existsByEmail(email);
 	}
+
+
 		
 }

@@ -1,8 +1,7 @@
 package com.door.security;
 
-import java.util.HashMap;
-import java.util.List;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +23,7 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class SecurityContextRepository implements ServerSecurityContextRepository {
+    private static final Logger log = LoggerFactory.getLogger(SecurityContextRepository.class);
 	
 	public CustomAuthenticationManager customAuthenticationManager;
 	public JwtUtils jwtUtils;
@@ -52,10 +52,11 @@ public class SecurityContextRepository implements ServerSecurityContextRepositor
 
         JwtData jwtData = gson.fromJson(jwtValidate.getBody().getData().toString(), JwtData.class);
 
-
         // validamos que jwt != null, es valido y obtenemos detealles
         if (!jwtValidate.getBody().getError()) {
-
+            System.out.println("==============");
+            System.out.println("JWT VALIDADO");
+            System.out.println("==============");
             JwtData test = new JwtData(jwtData.getEmail(), jwtData.getName(), jwtData.getRoles());
 
         	// Create Authentication user data
@@ -65,6 +66,9 @@ public class SecurityContextRepository implements ServerSecurityContextRepositor
             return this.customAuthenticationManager.authenticate(auth)
                     .map(SecurityContextImpl::new);
         } else {
+            System.out.println("==============");
+            System.out.println("ERROR");
+            System.out.println("==============");
             return Mono.empty();
         }
     }
@@ -73,11 +77,7 @@ public class SecurityContextRepository implements ServerSecurityContextRepositor
         //Do request to Login service: /api/login/detail
         String url = "http://localhost:8087/api/login/detail";
 
-        HashMap<String, String> params = new HashMap<>();
-        params.put("jwt", jwt);
-
-        ResponseEntity<ApiResponse> apiResponse = restTemplate.postForEntity(url, params, ApiResponse.class);
-
+        ResponseEntity<ApiResponse> apiResponse = restTemplate.postForEntity(url, jwt, ApiResponse.class);
         return apiResponse;
     }
 

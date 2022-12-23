@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 
 import com.door.jwt.JwtData;
 import com.door.jwt.JwtUtils;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import reactor.core.publisher.Mono;
 
