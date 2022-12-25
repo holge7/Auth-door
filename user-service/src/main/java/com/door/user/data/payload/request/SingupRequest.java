@@ -2,11 +2,13 @@ package com.door.user.data.payload.request;
 
 import java.util.Set;
 
+import com.door.user.entity.Rol;
+
 public class SingupRequest {
 	
 	public String username;
 	public String email;
-	public Set<String> role;
+	public Set<Rol> role;
 	public String password;
 
 	public SingupRequest() {}
@@ -27,11 +29,11 @@ public class SingupRequest {
 		this.email = email;
 	}
 
-	public Set<String> getRole() {
+	public Set<Rol> getRole() {
 		return role;
 	}
 
-	public void setRole(Set<String> role) {
+	public void setRole(Set<Rol> role) {
 		this.role = role;
 	}
 

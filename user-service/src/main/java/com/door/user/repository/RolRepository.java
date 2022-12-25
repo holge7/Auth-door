@@ -10,6 +10,10 @@ import com.door.user.entity.Rol;
 
 public interface RolRepository extends JpaRepository<Rol, Long>{
 	
-	public Optional<Rol> findByRol(ERol rol);
+	Optional<Rol> findByRol(ERol rol);
+
+    Optional<Rol> findByRol(String rol);
+
+    boolean existsByRol(String rol);
 	
 }

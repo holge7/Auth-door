@@ -1,11 +1,9 @@
 package com.door.user.service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
-import org.apache.catalina.mapper.Mapper;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +20,6 @@ import com.door.user.mapper.UserMapper;
 import com.door.user.repository.RolRepository;
 import com.door.user.repository.UserRepository;
 import com.door.user.utils.ApiResponse;
-
 
 @Service
 public class UserService {
@@ -41,25 +38,21 @@ public class UserService {
 	}
 	
 	
-	public ResponseEntity<ApiResponse> login(LoginRequest userLogin){
+	public ApiResponse login(LoginRequest userLogin){
 		
 		String email = userLogin.getEmail();
 		
 		//Validate the existence of the user/password
 		User user = userRepository.findByEmail(email)
-				.orElseThrow(() -> new UserNotFoundException(email));
-		System.out.println(user.getName());
-		UserDTO userDTO = userMapper.userDTO(user);		
-		ApiResponse response = new ApiResponse(userDTO);
-		
-		return new ResponseEntity<ApiResponse>(
-					response,
-					HttpStatus.OK
-				);
+			.orElseThrow(() -> new UserNotFoundException(email));
+
+		UserDTO userDTO = userMapper.userDTO(user);
+		return new ApiResponse(userDTO);
+
 	}
 	
 	
-	public ResponseEntity<ApiResponse> register(SingupRequest userRequest) {
+	public ApiResponse register(SingupRequest userRequest) {
 		
 		String email = userRequest.getEmail();
 		
@@ -76,70 +69,35 @@ public class UserService {
 				);
 		
 		//Assign roles
-		Set<String> strRole = userRequest.getRole();
-		Set<Rol> roles = new HashSet<>();
+		Set<Rol> rolesToAdd = userRequest.getRole();
+		Set<Rol> rolesChecked = new HashSet<>();
 		
-		if (strRole == null) {
+		if (rolesToAdd == null) {
 			Rol userRole = rolRepository.findByRol(ERol.ROLE_USER)
 					.orElseThrow(() -> new RolNotFoundException(ERol.ROLE_USER));
 			
-			roles.add(userRole);
-		}else {
-			strRole.forEach(role -> {
-				Rol userRole;
-				switch (role) {
-				case "ROLE_ADMIN": 
-					userRole = rolRepository.findByRol(ERol.ROLE_ADMIN)
-					.orElseThrow(() -> new RolNotFoundException(ERol.ROLE_ADMIN));
-					
-					roles.add(userRole);
-					break;
-					
-				case "ROLE_MODERATOR": 
-					userRole = rolRepository.findByRol(ERol.ROLE_MODERATOR)
-					.orElseThrow(() -> new RolNotFoundException(ERol.ROLE_MODERATOR));
-					
-					roles.add(userRole);
-					break;
-					
-				case "ROLE_USER": 
-					userRole = rolRepository.findByRol(ERol.ROLE_USER)
-					.orElseThrow(() -> new RolNotFoundException(ERol.ROLE_USER));
-					
-					roles.add(userRole);
-					break;
-					
-				default:
-					throw new RolNotFoundException(role);
+					rolesChecked.add(userRole);
+		} else {
+
+			for (Rol role : rolesToAdd) {
+				// Get rol and assert that exists, then add to list
+				Optional<Rol> userRole = rolRepository.findByRol(role.getRol());
+
+				if (!userRole.isPresent()) {
+					throw new RolNotFoundException(role.rol);
 				}
-			});
-			
+
+				rolesChecked.add(userRole.get());
+			}
 		}
 		
-		user.setRol(roles);
+		user.setRol(rolesChecked);
 
 		//Save and transform user
 		UserDTO userDTO = userMapper.userDTO(userRepository.save(user));
 		
 		//Return ResponseEntity
-		ApiResponse response = new ApiResponse(userDTO);
-		return new ResponseEntity<ApiResponse>(
-					response,
-					HttpStatus.CREATED
-				);
+		return new ApiResponse(userDTO);
 	}
-	
-	public User getUserEntity(String email){
-		User user = userRepository.findByEmail(email)
-				.orElseThrow(()->new UserNotFoundException(email));
-
-		return user;
-	}
-	
-	public boolean existsUser(String email) {
-		return userRepository.existsByEmail(email);
-	}
-
-
 		
 }

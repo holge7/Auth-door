@@ -35,16 +35,22 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<ApiResponse> login(
-			@RequestBody LoginRequest user
-			){
-		return userService.login(user);
+		@RequestBody LoginRequest user
+		){
+			return new ResponseEntity<ApiResponse>(
+				userService.login(user),
+				HttpStatus.OK
+			);
 	}	
 	
 	@PostMapping("/register")
 	public ResponseEntity<ApiResponse> register(
 			@RequestBody SingupRequest singUpRequest
 			) throws Exception {
-		return userService.register(singUpRequest);
+		return new ResponseEntity<ApiResponse>(
+			userService.register(singUpRequest),
+			HttpStatus.CREATED
+		);
 	}
 	
 }

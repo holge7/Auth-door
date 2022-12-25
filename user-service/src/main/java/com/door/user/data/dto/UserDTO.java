@@ -52,5 +52,10 @@ public class UserDTO {
 		
 		return roles;
 	}
+
+	@Override
+	public String toString() {
+		return "UserDTO [email=" + getEmail() + ", name=" + getName() + ", rol=" + getRol() + "]";
+	}
 	
 }

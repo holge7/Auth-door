@@ -4,31 +4,31 @@ import org.springframework.http.HttpStatus;
 
 public class RolException extends RuntimeException {
 
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 
-	protected static final String RESOURCE_NAME = "Rol";
+	public static final String RESOURCE_NAME = "Rol";
 	
-	protected String msg;
-	protected HttpStatus httpStatus;
+	public String msg;
+	public HttpStatus httpStatus;
 	
 	public RolException(String msg, HttpStatus httpStatus) {
 		this.msg = msg;
 		this.httpStatus = httpStatus;
 	}
 
-	protected String getMsg() {
+	public String getMsg() {
 		return msg;
 	}
 
-	protected void setMsg(String msg) {
+	public void setMsg(String msg) {
 		this.msg = msg;
 	}
 
-	protected HttpStatus getHttpStatus() {
+	public HttpStatus getHttpStatus() {
 		return httpStatus;
 	}
 
-	protected void setHttpStatus(HttpStatus httpStatus) {
+	public void setHttpStatus(HttpStatus httpStatus) {
 		this.httpStatus = httpStatus;
 	}
 

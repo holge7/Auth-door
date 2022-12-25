@@ -21,6 +21,10 @@ public class Rol {
 	
 	public Rol() {}
 
+	public Rol(ERol rol) {
+		this.rol = rol;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -36,5 +40,11 @@ public class Rol {
 	public void setRol(ERol rol) {
 		this.rol = rol;
 	}
+
+	@Override
+	public String toString() {
+		return "Rol [id=" + id + ", rol=" + rol + "]";
+	}
+	
 	
 }

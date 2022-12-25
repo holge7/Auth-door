@@ -24,8 +24,7 @@ public class UserAlreadyExistsException extends UserException {
 	
 	private static String msg(User user) {
 		return String.format(msgString, user.getEmail());		
-	}
-	
+	}	
 	
 
 }
