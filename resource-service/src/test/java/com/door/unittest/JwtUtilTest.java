@@ -22,7 +22,7 @@ public class JwtUtilTest {
 	 * VARS
 	 * * */
     JwtUtil jwtUtil;
-    String jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJlbWFpbFwiOlwiam9yZ2VAZ21haWwuY29tXCIsXCJuYW1lXCI6XCJqb3JnZVwiLFwicm9sZXNcIjpbXCJST0xFX0FETUlOXCJdfSIsImlhdCI6MTY3MTgxNjk0MywiZXhwIjoxNjcxOTAzMzQzfQ.hSl82BWLfsk8nzKrmIYGcQ_fF3dE3fCHxdD_CBW2TFRbe3IVegC2B5Z9fq-yhqeB5zhZFw-YVadAy-kMQsCQeA";
+    String jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJlbWFpbFwiOlwiam9yZ2VAZ21haWwuY29tXCIsXCJuYW1lXCI6XCJqb3JnZVwiLFwicm9sZXNcIjpbXCJST0xFX0FETUlOXCJdfSIsImlhdCI6MTY3MTk5MjgyNSwiZXhwIjoxNjcyOTkyODI1fQ.DS4V83QwF__p1j7nVJAyb-pl0Ay8cl15ApRqYhwIzTGPDVWji5pLDZlGoAKLsFAbeo1jNmYAPYz6S8Xt2us2Xg";
     
     /*
     * MOCKS

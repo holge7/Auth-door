@@ -49,7 +49,7 @@ public class JwtUtils {
 		
 		Gson gson = new Gson();
 		String jwtDataString = gson.toJson(jwtData);
-		
+
 		return Jwts.builder()
 				.setSubject(jwtDataString)
 				.setIssuedAt(new Date())
