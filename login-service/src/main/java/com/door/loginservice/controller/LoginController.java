@@ -1,5 +1,6 @@
 package com.door.loginservice.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,22 +28,30 @@ public class LoginController {
 	public ResponseEntity<ApiResponse> login(
 			@RequestBody LoginRequest user
 			) {
-		System.out.println("Hello world");
-		return loginService.login(user);
+		return new ResponseEntity<>(
+			loginService.login(user),
+			HttpStatus.OK
+		);
 	}
 
 	@PostMapping("/valid")
 	public ResponseEntity<ApiResponse> validJwt(
 		@RequestParam String jwt
 	) {
-		return loginService.validJwt(jwt);
+		return new ResponseEntity<>(
+			loginService.validJwt(jwt),
+			HttpStatus.OK
+		);
 	}
 
 	@PostMapping("/detail")
 	public ResponseEntity<ApiResponse> getJwtDetail(
 		@RequestBody String jwt
 	) throws JsonMappingException, JsonProcessingException {
-		return loginService.getJwtDetail(jwt);
+		return new ResponseEntity<>(
+			loginService.getJwtDetail(jwt),
+			HttpStatus.OK
+		);
 	}
 
 

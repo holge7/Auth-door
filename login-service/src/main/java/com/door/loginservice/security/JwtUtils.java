@@ -36,8 +36,14 @@ public class JwtUtils {
 	@Value("${security.app.jwtExpirationMs}")
 	private int jwtExpirationMs;
 
+	Gson gson;
+
 	public JwtUtils() {}
-	
+
+	public JwtUtils(Gson gson) {
+		this.gson = gson;
+	}
+
 	/**
 	 * Generate JWT 
 	 * @param userDTO
@@ -47,7 +53,6 @@ public class JwtUtils {
 
 		JwtData jwtData = new JwtData(userDTO.getEmail(), userDTO.getName(), userDTO.getRol());
 		
-		Gson gson = new Gson();
 		String jwtDataString = gson.toJson(jwtData);
 
 		return Jwts.builder()

@@ -13,6 +13,8 @@ import org.springframework.web.client.RestTemplate;
 import com.door.loginservice.dto.JwtResponse;
 import com.door.loginservice.dto.LoginRequest;
 import com.door.loginservice.dto.UserDTO;
+import com.door.loginservice.exception.CustomGenericalException;
+import com.door.loginservice.exception.JwtCustomException;
 import com.door.loginservice.security.JwtData;
 import com.door.loginservice.security.JwtUtils;
 import com.door.loginservice.utils.ApiResponse;
@@ -20,6 +22,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+
+import io.jsonwebtoken.JwtException;
 
 
 @Service
@@ -37,37 +41,30 @@ public class LoginService {
         this.jwtUtils = jwtUtils;
     }
 
-    public ResponseEntity<ApiResponse> validJwt(String jwt) {
+    public ApiResponse validJwt(String jwt) {
         // reverse result
-        boolean isValid = !jwtUtils.validateJwtToken(jwt);
+        boolean isValid = jwtUtils.validateJwtToken(jwt);
 
-        return new ResponseEntity<ApiResponse>(
-            new ApiResponse("Invalid jwt", isValid, null),
-            HttpStatus.OK
-        );
+        if (isValid) {
+            return new ApiResponse("Valid jwt", false);
+        }
+        return new ApiResponse("Invalid jwt", true);
     }
 
-    public ResponseEntity<ApiResponse> getJwtDetail(String jwt) throws JsonMappingException, JsonProcessingException {
+    public ApiResponse getJwtDetail(String jwt) {
         if (!jwtUtils.validateJwtToken(jwt)) {
-            return new ResponseEntity<ApiResponse>(
-                new ApiResponse("Invalid jwt"),
-                HttpStatus.UNAUTHORIZED
-            );
+            throw new JwtCustomException(jwt, HttpStatus.UNAUTHORIZED);
         }
 
         // Decrypt and get all info about the JWT
         var claims = jwtUtils.getAllClaimsFromToken(jwt);
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        JwtData user = objectMapper.readValue(claims.getBody().getSubject(), JwtData.class);
+        JwtData user = gson.fromJson(claims.getBody().getSubject(), JwtData.class);
 
-        return new ResponseEntity<ApiResponse>(
-                new ApiResponse("Hello World!", false, user),
-                HttpStatus.OK
-            );
+        return new ApiResponse(user);
     }
     
-    public ResponseEntity<ApiResponse> login(LoginRequest user) {
+    public ApiResponse login(LoginRequest user) {
 
         HashMap<String, String> params = new HashMap<>();
 		params.put("email", user.getEmail());
@@ -76,18 +73,14 @@ public class LoginService {
         ResponseEntity<String> response = null;
         ApiResponse apiResponse = null;
 
-        try {
-            response =  restTemplate.postForEntity("http://localhost:8085/api/user/login", params, String.class);
-            apiResponse = gson.fromJson(response.getBody(), ApiResponse.class);
-        } catch (HttpClientErrorException e) {
-            apiResponse = gson.fromJson(e.getResponseBodyAsString(), ApiResponse.class);
-        }
+        response = restTemplate.postForEntity("http://localhost:8085/api/user/login", params, String.class);
+        apiResponse = gson.fromJson(response.getBody(), ApiResponse.class);
 
         if (apiResponse.getError()) {
-			return new ResponseEntity<ApiResponse>(
-					new ApiResponse(apiResponse.getMessage()),
-					HttpStatus.NOT_FOUND
-				);
+            logger.error(apiResponse.getMessage());
+            throw new CustomGenericalException(
+                apiResponse.getMessage(), 
+                HttpStatus.NOT_FOUND);
 		}
         
 		String userString = gson.toJson(apiResponse.getData());
@@ -99,10 +92,7 @@ public class LoginService {
 				userDTO.getEmail(), 
 				userDTO.getRol());
 
-        return new ResponseEntity<>(
-            new ApiResponse(jwtResponse),
-            HttpStatus.OK
-        );
+        return new ApiResponse(jwtResponse);
     }
 
 }
