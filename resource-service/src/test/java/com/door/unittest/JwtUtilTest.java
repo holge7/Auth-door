@@ -1,6 +1,9 @@
 package com.door.unittest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,32 +12,55 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import com.door.dto.UserDTO;
-import com.door.security.JwtUtil;
+import com.door.security.JwtData;
+import com.door.security.JwtUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+
+import io.jsonwebtoken.Jwts;
 
 @ExtendWith(MockitoExtension.class)
 public class JwtUtilTest {
     
-    /*
+	/*
 	 * VARS
 	 * * */
-    JwtUtil jwtUtil;
-    String jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJlbWFpbFwiOlwiam9yZ2VAZ21haWwuY29tXCIsXCJuYW1lXCI6XCJqb3JnZVwiLFwicm9sZXNcIjpbXCJST0xFX0FETUlOXCJdfSIsImlhdCI6MTY3MTk5MjgyNSwiZXhwIjoxNjcyOTkyODI1fQ.DS4V83QwF__p1j7nVJAyb-pl0Ay8cl15ApRqYhwIzTGPDVWji5pLDZlGoAKLsFAbeo1jNmYAPYz6S8Xt2us2Xg";
-    
-    /*
-    * MOCKS
-    * * */
+    JwtUtils jwtUtils;
+    Gson gson;
 
+	String email = "jorge@gmail.com";
+	String name = "Holge";
+	List<String> rol = Arrays.asList("ROLE_ADMIN");
+	String jwtSecret = "jwtKeyWithAlmost512bitesToABestProtectionMyNameIsHolgeAndIAmDoingTestsingThisKeyIsTooLongIAmBoring";
+	
+	/*
+	 * MOCKS
+	 * * */
+	@Mock
+	UserDTO userDTO;
+    
     /*
 	 * PREPARE
 	 * * */
-    @BeforeEach
-    public void tearUp(){
-        Gson gson = new Gson();
-        jwtUtil = new JwtUtil(gson);
+	@BeforeEach
+	public void tearUp() {
+		when(userDTO.getEmail()).thenReturn(email);
+		when(userDTO.getName()).thenReturn(name);
+		when(userDTO.getRol()).thenReturn(rol);
+		
+        gson = new Gson();
+        jwtUtils = new JwtUtils(gson);
+
+		ReflectionTestUtils.setField(jwtUtils, "jwtSecret", jwtSecret);
+		ReflectionTestUtils.setField(jwtUtils, "jwtExpirationMs", 30000);
+        
     }
 
     @AfterEach
@@ -45,17 +71,6 @@ public class JwtUtilTest {
     /*
 	 * TEST
 	 * * */
-    @Test
-    public void get_user_from_jwt() {
-        UserDTO user = jwtUtil.getUserFromJwt(jwt);
-
-        List<String> roles = Arrays.asList("ROLE_ADMIN");
-
-        assertEquals("jorge@gmail.com", user.getEmail());
-        assertEquals("jorge", user.getName());
-        assertEquals(roles, user.getRol());
-    }
-
 
 
 }

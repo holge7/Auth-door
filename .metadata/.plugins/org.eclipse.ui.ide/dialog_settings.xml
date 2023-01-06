@@ -58,6 +58,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="D:\ProgrammingEnviroment\Spring\Auth-door\authorization-server"/>
 			<item value="D:\ProgrammingEnviroment\Spring\door\auth-service"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">

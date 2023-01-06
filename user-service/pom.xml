@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>19</java.version>
 		<spring-cloud.version>2022.0.0-RC2</spring-cloud.version>
+		<springfox.swagger.version>2.9.2</springfox.swagger.version>
 	</properties>
 	<dependencies>
 	
@@ -52,9 +53,45 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
+		<!-- =======================
+					SECURITY
+		=========================-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>2.5.2.RELEASE</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
+		<dependency>
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt-api</artifactId>
+		    <version>0.11.5</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt-impl</artifactId>
+		    <version>0.11.5</version>
+		    <scope>runtime</scope>
+		</dependency>
+		<dependency>
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
+		    <version>0.11.5</version>
+		    <scope>runtime</scope>
+		</dependency>
+
 		<!-- ============================
 					UTILS 
 		============================-->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -67,7 +104,23 @@
 		    <artifactId>modelmapper</artifactId>
 		    <version>3.1.0</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+		</dependency>
+
+
+		<!-- ============================
+					DOC 
+		============================-->
+		<dependency>
+	      <groupId>org.springdoc</groupId>
+	      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+	      <version>2.0.2</version>
+	   </dependency>
+
+
 		<!-- ============================
 					TESTS 
 		============================-->

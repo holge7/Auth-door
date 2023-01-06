@@ -11,14 +11,14 @@ public class JwtData {
 	
 	String email;
 	String name; 
-	List<String> roles;
+	List<String> rol;
 	
 	public JwtData() {}
 
-	public JwtData(String email, String name, List<String> roles) {
+	public JwtData(String email, String name, List<String> rol) {
 		this.email = email;
 		this.name = name;
-		this.roles = roles;
+		this.rol = rol;
 	}
 	
 	public String getEmail() {
@@ -37,17 +37,17 @@ public class JwtData {
 		this.name = name;
 	}
 
-	public List<String> getRoles() {
-		return roles;
+	public List<String> getRol() {
+		return rol;
 	}
 
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
+	public void setRoles(List<String> rol) {
+		this.rol = rol;
 	}
 
 	@Override
 	public String toString() {
-		return "JwtData [email=" + email + ", name="+name+" roles=" + roles + "]";
+		return "JwtData [email=" + email + ", name="+name+" rol=" + rol + "]";
 	}
 	
 	

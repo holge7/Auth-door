@@ -2,6 +2,7 @@ package com.door.loginservice.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,14 @@ public class LoginController {
 		this.loginService = loginService;
 	}
 
+	@GetMapping("/test")
+	public ResponseEntity<String> test() {
+		return new ResponseEntity<>(
+			"Hello world",
+			HttpStatus.OK
+		);
+	}
+
     @PostMapping("")
 	public ResponseEntity<ApiResponse> login(
 			@RequestBody LoginRequest user
@@ -38,6 +47,7 @@ public class LoginController {
 	public ResponseEntity<ApiResponse> validJwt(
 		@RequestParam String jwt
 	) {
+		System.out.println("Hello, llego aqui");
 		return new ResponseEntity<>(
 			loginService.validJwt(jwt),
 			HttpStatus.OK
@@ -46,7 +56,7 @@ public class LoginController {
 
 	@PostMapping("/detail")
 	public ResponseEntity<ApiResponse> getJwtDetail(
-		@RequestBody String jwt
+		@RequestParam String jwt
 	) throws JsonMappingException, JsonProcessingException {
 		return new ResponseEntity<>(
 			loginService.getJwtDetail(jwt),

@@ -80,7 +80,7 @@ public class JwtUtilsTest {
 
         String regex = "^[\\w-]+\\.[\\w-]+\\.[\\w-]+$";
         Pattern pattern = Pattern.compile(regex);
-        System.out.println(jwt);
+
         assertNotNull(jwt);
         assertTrue(pattern.matcher(jwt).matches());
     }

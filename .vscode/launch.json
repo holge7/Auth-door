@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch SwaggerServiceApplication",
+            "request": "launch",
+            "mainClass": "com.door.swaggerservice.SwaggerServiceApplication",
+            "projectName": "swagger-service"
+        },
+        {
+            "type": "java",
             "name": "Launch LoginServiceApplication",
             "request": "launch",
             "mainClass": "com.door.loginservice.LoginServiceApplication",

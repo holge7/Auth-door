@@ -5,14 +5,14 @@ import java.util.List;
 public class UserDTO {
 	public String email;
 	public String name;
-	public List<String> roles;
+	public List<String> rol;
 	
 	public UserDTO() {}
 	
-	public UserDTO(String email, String name, List<String> roles) {
+	public UserDTO(String email, String name, List<String> rol) {
 		this.email = email;
 		this.name = name;
-		this.roles = roles;
+		this.rol = rol;
 	}
 
 	public String getEmail() {
@@ -31,17 +31,17 @@ public class UserDTO {
 		this.name = name;
 	}
 	
-	public void setRol(List<String> roles) {
-		this.roles = roles;
+	public void setRol(List<String> rol) {
+		this.rol = rol;
 	}
 	
 	public List<String> getRol() {
-		return this.roles;
+		return this.rol;
 	}
 
 	@Override
 	public String toString() {
-		return "UserDTO [email=" + email + ", name=" + name + ", rol=" + roles + "]";
+		return "UserDTO [email=" + email + ", name=" + name + ", rol=" + rol + "]";
 	}
 	
 

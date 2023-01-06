@@ -8,7 +8,8 @@ public class Routes {
 			"/api/user/test",
 			"/api/user/register",
 			"/api/auth/login",
-			"/login"
+			"/login",
+			"/test"
 	};
 	
 	public static final String[] USER_ROUTES = new String[] {

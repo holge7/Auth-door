@@ -15,16 +15,26 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>19</java.version>
+		<spring-cloud.version>2022.0.0-RC2</spring-cloud.version>
 	</properties>
 	<dependencies>
 		<!-- =======================
-					SPRING
+					WEB
 		=========================-->	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- =======================
+				   EUREKA
+		=========================-->	
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+		
 
 		<!-- =======================
 					UTILS
@@ -37,6 +47,10 @@
 		<!-- =======================
 				  SECURITY
 		=========================-->	
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
 		<dependency>
 		    <groupId>io.jsonwebtoken</groupId>
@@ -56,6 +70,16 @@
 		    <scope>runtime</scope>
 		</dependency>
 		
+		<!-- ============================
+					DOC 
+		============================-->
+	   <dependency>
+	      <groupId>org.springdoc</groupId>
+	      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+	      <version>2.0.2</version>
+	   </dependency>
+
+
 		<!-- =======================
 					TEST
 		=========================-->	
@@ -70,6 +94,18 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependencyManagement>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.cloud</groupId>
+					<artifactId>spring-cloud-dependencies</artifactId>
+					<version>${spring-cloud.version}</version>
+					<type>pom</type>
+					<scope>import</scope>
+				</dependency>
+			</dependencies>
+		</dependencyManagement>
 	</dependencies>
 
 	<build>
@@ -80,5 +116,24 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>netflix-candidates</id>
+			<name>Netflix Candidates</name>
+			<url>https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 </project>

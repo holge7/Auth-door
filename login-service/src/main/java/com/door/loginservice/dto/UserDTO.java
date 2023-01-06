@@ -30,20 +30,18 @@ public class UserDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public List<String> getRol() {
+		return rol;
+	}
+
 	public void setRol(List<String> rol) {
 		this.rol = rol;
-	}
-	
-	public List<String> getRol() {
-		return this.rol;
 	}
 
 	@Override
 	public String toString() {
 		return "UserDTO [email=" + email + ", name=" + name + ", rol=" + rol + "]";
 	}
-	
 
-	
 }

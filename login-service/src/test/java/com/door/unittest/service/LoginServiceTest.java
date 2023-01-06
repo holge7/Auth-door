@@ -103,7 +103,7 @@ public class LoginServiceTest {
             HttpStatus.OK
         );
 
-        when(restTemplate.postForEntity(eq("http://localhost:8085/api/user/login"), any(), eq(String.class)))
+        when(restTemplate.postForEntity(eq("http://localhost:8080/api/user/login"), any(), eq(String.class)))
         .thenReturn(goodResponse);
 
         loginService = new LoginService(restTemplate, gson, jwtUtils);
@@ -126,7 +126,7 @@ public class LoginServiceTest {
     
     //@Test
     public void get_jwt_detail() {
-        String claimsJwtStr = "header={alg=HS512},body={sub={'email':'jorge@gmail.com','name':'Holge','roles':['ROLE_ADMIN']}, iat=1671997403, exp=1672997403},signature=EoTpIccCsiORWtFp9R4UUO4y8xJR81K9pfm9gFjIOU-Ng7CqzImSFCFte4hIFqVZoRYCANSbOjNg6FsEMaUlqw";
+        String claimsJwtStr = "header={alg=HS512},body={sub={'email':'jorge@gmail.com','name':'Holge','rol':['ROLE_ADMIN']}, iat=1671997403, exp=1672997403},signature=EoTpIccCsiORWtFp9R4UUO4y8xJR81K9pfm9gFjIOU-Ng7CqzImSFCFte4hIFqVZoRYCANSbOjNg6FsEMaUlqw";
 
 
         ApiResponse response = loginService.getJwtDetail(jwt);
@@ -151,7 +151,7 @@ public class LoginServiceTest {
 
     @Test
     public void login_apiResponse_with_error() {
-        when(restTemplate.postForEntity(eq("http://localhost:8085/api/user/login"), any(), eq(String.class)))
+        when(restTemplate.postForEntity(eq("http://localhost:8080/api/user/login"), any(), eq(String.class)))
         .thenReturn(badResponse);
 
         try {

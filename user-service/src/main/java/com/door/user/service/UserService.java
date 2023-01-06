@@ -46,8 +46,15 @@ public class UserService {
 		User user = userRepository.findByEmail(email)
 			.orElseThrow(() -> new UserNotFoundException(email));
 
+		System.out.println("User");
+			System.out.println(user);
+
 		UserDTO userDTO = userMapper.userDTO(user);
-		return new ApiResponse(userDTO);
+		
+			System.out.println("User dto");
+			System.out.println(userDTO);
+
+			return new ApiResponse(userDTO);
 
 	}
 	
