@@ -16,14 +16,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.door.dto.UserDTO;
-import com.door.security.JwtData;
-import com.door.security.JwtUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
+import commons.dto.UserDTO;
+import commons.jwt.JwtUtils;
 import io.jsonwebtoken.Jwts;
 
 @ExtendWith(MockitoExtension.class)
@@ -56,7 +55,7 @@ public class JwtUtilTest {
 		when(userDTO.getRol()).thenReturn(rol);
 		
         gson = new Gson();
-        jwtUtils = new JwtUtils(gson);
+        jwtUtils = new JwtUtils();
 
 		ReflectionTestUtils.setField(jwtUtils, "jwtSecret", jwtSecret);
 		ReflectionTestUtils.setField(jwtUtils, "jwtExpirationMs", 30000);

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
 
-import com.door.utils.ApiResponse;
+import commons.utils.ApiResponse;
 
 @ControllerAdvice
 public class ExceptionHandlerImpl extends ResponseStatusExceptionHandler {

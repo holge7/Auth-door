@@ -8,7 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.door.user.data.ERol;
-import com.door.user.data.dto.UserDTO;
 import com.door.user.data.payload.request.LoginRequest;
 import com.door.user.data.payload.request.SingupRequest;
 import com.door.user.entity.Rol;
@@ -19,7 +18,9 @@ import com.door.user.exception.UserNotFoundException;
 import com.door.user.mapper.UserMapper;
 import com.door.user.repository.RolRepository;
 import com.door.user.repository.UserRepository;
-import com.door.user.utils.ApiResponse;
+
+import commons.dto.UserDTO;
+import commons.utils.ApiResponse;
 
 @Service
 public class UserService {

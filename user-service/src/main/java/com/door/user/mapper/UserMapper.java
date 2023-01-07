@@ -3,9 +3,10 @@ package com.door.user.mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import com.door.user.data.dto.UserDTO;
 import com.door.user.data.dto.UserRegisterDTO;
 import com.door.user.entity.User;
+
+import commons.dto.UserDTO;
 
 @Component
 public class UserMapper {

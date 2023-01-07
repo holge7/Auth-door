@@ -23,7 +23,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.door.user.data.ERol;
-import com.door.user.data.dto.UserDTO;
 import com.door.user.data.payload.request.LoginRequest;
 import com.door.user.data.payload.request.SingupRequest;
 import com.door.user.entity.Rol;
@@ -34,7 +33,9 @@ import com.door.user.mapper.UserMapper;
 import com.door.user.repository.RolRepository;
 import com.door.user.repository.UserRepository;
 import com.door.user.service.UserService;
-import com.door.user.utils.ApiResponse;
+
+import commons.dto.UserDTO;
+import commons.utils.ApiResponse;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
@@ -98,7 +99,7 @@ public class UserServiceTest {
         when(rolRepository.findByRol(ERol.ROLE_USER)).thenReturn(Optional.of(new Rol(ERol.ROLE_USER)));
 
         // USER MAPPER
-        UserDTO userDTO = new UserDTO(email, name, rolesSet);
+        //UserDTO userDTO = new UserDTO(email, name, rolesSet);
         when(userMapper.userDTO(any())).thenReturn(userDTO);
 
         userService = new UserService(userRepository, rolRepository, passwordEncoder, userMapper);

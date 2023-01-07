@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.door.user.utils.ApiResponse;
+import commons.utils.ApiResponse;
+
 
 @ControllerAdvice
 public class ExceptionHandlerImpl extends ResponseEntityExceptionHandler {

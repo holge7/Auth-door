@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.door.user.data.payload.request.LoginRequest;
 import com.door.user.data.payload.request.SingupRequest;
 import com.door.user.service.UserService;
-import com.door.user.utils.ApiResponse;
+
+import commons.utils.ApiResponse;
 
 @RestController
 @RequestMapping("/api/user")
