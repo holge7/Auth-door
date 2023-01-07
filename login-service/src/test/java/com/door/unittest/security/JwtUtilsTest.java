@@ -38,7 +38,6 @@ public class JwtUtilsTest {
     String email = "jorge@gmail.com";
     String name = "Holge";
     List<String> rolList = Arrays.asList("ROLE_ADMIN"); 
-    String jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJlbWFpbFwiOlwiam9yZ2VAZ21haWwuY29tXCIsXCJuYW1lXCI6XCJIb2xnZVwiLFwicm9sZXNcIjpbXCJST0xFX0FETUlOXCJdfSIsImlhdCI6MTY3MTk5NzQwMywiZXhwIjoxNjcyOTk3NDAzfQ.EoTpIccCsiORWtFp9R4UUO4y8xJR81K9pfm9gFjIOU-Ng7CqzImSFCFte4hIFqVZoRYCANSbOjNg6FsEMaUlqw";
     String jwtBad = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJlbWFpbFwiOlwiam9yZ2VAZ21haWwuY29tXCIsXCJuYW1lXCI6XCJIb2xnZVwiLFwicm9sZXNcIjpbXCJST0xFX0FETUlOXCJdfSIsImlhdCI6MTY3MTk5NzQwMywiZXhwIjoxNjcyOTk3dddddd.EoTpIccCsiORWtFp9R4UUO4y8xJR81K9pfm9gFjIOU-Ng7CqzImSFCFte4hIFqVZoRYCANSbOjNg6FsEMadddd";
     
     
@@ -87,6 +86,7 @@ public class JwtUtilsTest {
 
     @Test
     public void get_all_claims_jwt() {
+    	String jwt = jwtUtils.generateJwtToken(userDTO);
         Jws<Claims> data = jwtUtils.getAllClaimsFromToken(jwt);
 
         assertEquals("HS512", data.getHeader().get("alg"));
@@ -100,6 +100,7 @@ public class JwtUtilsTest {
 
     @Test
     public void validate_jwt() {
+    	String jwt = jwtUtils.generateJwtToken(userDTO);
         Boolean isValid = jwtUtils.validateJwtToken(jwt);
         assertTrue(isValid);
     }

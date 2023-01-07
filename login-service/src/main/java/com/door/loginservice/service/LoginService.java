@@ -70,15 +70,6 @@ public class LoginService {
 		String userString = gson.toJson(apiResponse.getData());
 		UserDTO userDTO = gson.fromJson(userString, UserDTO.class);
 
-        System.out.println("Api response:");
-        System.out.println(apiResponse.getData());
-
-            System.out.println("User String");
-            System.out.println(userString);
-
-        System.out.println("User dto");
-            System.out.println(userDTO);
-
 		JwtResponse jwtResponse = new JwtResponse(
 				jwtUtils.generateJwtToken(userDTO), 
 				userDTO.getName(), 

@@ -21,7 +21,6 @@ public class ServerDefinitionController {
     public String getServiceDefinition(
         @PathVariable String serviceName
     ){
-        System.out.println(serviceName);
         return serviceDefinitionsContext.getSwaggerDefinition(serviceName);
     }
 

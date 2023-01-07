@@ -81,7 +81,7 @@ public class UserServiceTest {
 
         // USER DTO
         when(userDTO.getEmail()).thenReturn(email);
-        when(userDTO.getName()).thenReturn(email);
+        when(userDTO.getName()).thenReturn(name);
         when(userDTO.getRol()).thenReturn(rolesList);
 
         //  SING UP REQUEST
@@ -146,6 +146,10 @@ public class UserServiceTest {
     // Register
     @Test
     public void register() {
+        when(userDTO.getEmail()).thenReturn(email);
+        when(userDTO.getName()).thenReturn(name);
+        when(userDTO.getRol()).thenReturn(rolesList);
+    	
         ApiResponse response = userService.register(singupRequest);
         
         assertNotNull(response);

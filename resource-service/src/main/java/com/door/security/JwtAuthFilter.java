@@ -53,11 +53,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             
             ResponseEntity<String> loginResponse = restTemplate.postForEntity("http://login-service/api/login/valid", params, String.class);
             ApiResponse apiResponse = gson.fromJson(loginResponse.getBody(), ApiResponse.class);    
-            System.out.println(apiResponse);
             if (!apiResponse.getError()) {
-                System.out.println("antes de getAuthentication");
                 Authentication auth = jwtUtils.getAuthentication(jwt);
-                System.out.println(auth);
 
                 if (auth != null) {
                     SecurityContext context = SecurityContextHolder.createEmptyContext();
@@ -69,7 +66,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 logger.warn("Invalid JWT");
             }
         }
-            System.out.println("Llego hasta aqui");
         filterChain.doFilter(request, response);
     }
 
@@ -77,10 +73,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String headerAuth = request.getHeader("Authorization");
 
         if (StringUtils.hasText(headerAuth)) {
-            System.out.println("Viene JWT");
             return headerAuth;
         }
-        System.out.println("No viene JWT");
         return null;
     }
     

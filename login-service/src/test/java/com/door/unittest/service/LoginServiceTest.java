@@ -94,7 +94,7 @@ public class LoginServiceTest {
         String badApiResponseString = gson.toJson(bad);
 
        ResponseEntity<String> goodResponse = new ResponseEntity(
-        goodApiResponseString,
+    		goodApiResponseString,
             HttpStatus.OK
         );
 
@@ -103,7 +103,7 @@ public class LoginServiceTest {
             HttpStatus.OK
         );
 
-        when(restTemplate.postForEntity(eq("http://localhost:8080/api/user/login"), any(), eq(String.class)))
+        when(restTemplate.postForEntity(eq("http://user-service/api/user/login"), any(), eq(String.class)))
         .thenReturn(goodResponse);
 
         loginService = new LoginService(restTemplate, gson, jwtUtils);
@@ -162,5 +162,5 @@ public class LoginServiceTest {
 
     }
 
-    
+
 }

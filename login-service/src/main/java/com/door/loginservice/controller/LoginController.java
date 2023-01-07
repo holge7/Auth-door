@@ -47,7 +47,6 @@ public class LoginController {
 	public ResponseEntity<ApiResponse> validJwt(
 		@RequestParam String jwt
 	) {
-		System.out.println("Hello, llego aqui");
 		return new ResponseEntity<>(
 			loginService.validJwt(jwt),
 			HttpStatus.OK
