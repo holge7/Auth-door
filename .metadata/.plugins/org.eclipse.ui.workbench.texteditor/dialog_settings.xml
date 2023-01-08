@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="jwtUtils"/>
+		<item key="selection" value="postForEntity"/>
 		<list key="findhistory">
+			<item value="postForEntity"/>
 			<item value="JwtUtils"/>
 			<item value="mock"/>
 			<item value="mockito"/>
@@ -22,7 +23,6 @@
 			<item value="dev"/>
 			<item value="spring-boot-starter-web"/>
 			<item value="spring-boot-maven-plugin"/>
-			<item value="security"/>
 		</list>
 		<list key="replacehistory">
 		</list>

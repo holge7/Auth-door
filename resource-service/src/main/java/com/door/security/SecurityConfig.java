@@ -25,7 +25,7 @@ public class SecurityConfig {
         return http.cors().and()
         .csrf().disable()
         .authorizeHttpRequests()
-                .requestMatchers("/api/resource/test", "/api/resource/public/**").permitAll()
+                .requestMatchers("/api/resource/test", "/api/resource/public/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
                 .requestMatchers("/api/resource/admin/greeting").hasRole("ADMIN")
                 .anyRequest().authenticated()
             // Exceptions

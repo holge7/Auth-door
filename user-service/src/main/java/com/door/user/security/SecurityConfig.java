@@ -25,10 +25,9 @@ public class SecurityConfig {
         return http.cors().and()
         .csrf().disable()
         .authorizeHttpRequests()
-                .requestMatchers("/api/swagger-ui").permitAll()
-                .requestMatchers("/api/user/**").permitAll()
+                .requestMatchers("/api/user/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
                 .requestMatchers("/api/user/admin/**").hasRole("ADMIN")
-                //.anyRequest().authenticated()
+                .anyRequest().authenticated()
             // Exceptions
             .and()
             .sessionManagement()

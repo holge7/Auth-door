@@ -1,11 +1,6 @@
-io.jsonwebtoken.security.WeakKeyException: The signing key's size is 216 bits which is not secure enough for the HS512 algorithm.  The JWT JWA Specification (RFC 7518, Section 3.2) states that keys used with HS512 MUST have a size >= 512 bits (the key size must be greater than or equal to the hash output size).  Consider using the io.jsonwebtoken.security.Keys class's 'secretKeyFor(SignatureAlgorithm.HS512)' method to create a key guaranteed to be secure enough for HS512.  See https://tools.ietf.org/html/rfc7518#section-3.2 for more information.
-	at io.jsonwebtoken.SignatureAlgorithm.assertValid(SignatureAlgorithm.java:387)
-	at io.jsonwebtoken.SignatureAlgorithm.assertValidSigningKey(SignatureAlgorithm.java:315)
-	at io.jsonwebtoken.impl.DefaultJwtBuilder.signWith(DefaultJwtBuilder.java:112)
-	at io.jsonwebtoken.impl.DefaultJwtBuilder.signWith(DefaultJwtBuilder.java:125)
-	at io.jsonwebtoken.impl.DefaultJwtBuilder.signWith(DefaultJwtBuilder.java:133)
-	at com.door.jwt.JwtUtils.generateJwtToken(JwtUtils.java:59)
-	at com.door.unittest.JwtUtilsTest.generate_jwt_token(JwtUtilsTest.java:70)
+java.lang.NullPointerException: Cannot invoke "org.springframework.http.ResponseEntity.getBody()" because "response" is null
+	at com.door.loginservice.service.LoginService.login(LoginService.java:61)
+	at com.door.unittest.service.LoginServiceTest.login(LoginServiceTest.java:140)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
 	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
